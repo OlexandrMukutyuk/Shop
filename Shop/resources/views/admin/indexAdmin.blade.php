@@ -14,7 +14,18 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <div class="mt-3">
+                        <a href="{{ route('admin.view.create') }}" class="btn btn-secondary">Створити вид</a>
+                        <a href="" class="btn btn-secondary">Створити категорію</a>
+                        <a href="" class="btn btn-secondary">Створити товар</a>
+                    </div>
+
+                    <div class="mt-3">
+                        <a href="{{ route('admin.view.all') }}" class="btn btn-info">Всі види</a>
+                        <a href="" class="btn btn-info">Всі категорію</a>
+                        <a href="" class="btn btn-info">Весь товар</a>
+                    </div>
+
                 </div>
             </div>
         </div>
