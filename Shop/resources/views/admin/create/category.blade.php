@@ -15,11 +15,21 @@
                     @endif
                     <a href="{{ route('index_admin') }}" class="btn btn-primary mb-3">На головну</a>
 
-                    <form method="POST" action="{{ route('admin.view.save') }}">
+                    <!-- Форма для введення назви виду -->
+                    <form method="POST" action="{{ route('admin.categoty.save')}}">
                         @csrf
 
                         <div class="mb-3">
                             <input type="text" class="form-control" id="view_name" name="view_name" placeholder="Введіть назву виду">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleSelect">Виберіть вид</label>
+                            <select class="form-select" id="exampleSelect" name="exampleSelect">
+                                @foreach($types as $type)
+                                    <option value={{$type->id}}>{{$type->name_type}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         @if ($errors->has('view_name'))
@@ -30,6 +40,7 @@
 
                         <button type="submit" class="btn btn-success">Зберегти</button>
                     </form>
+
 
                 </div>
             </div>

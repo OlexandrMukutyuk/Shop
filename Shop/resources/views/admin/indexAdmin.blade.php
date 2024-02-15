@@ -16,13 +16,13 @@
 
                     <div class="mt-3">
                         <a href="{{ route('admin.view.create') }}" class="btn btn-secondary">Створити вид</a>
-                        <a href="" class="btn btn-secondary">Створити категорію</a>
+                        <a href="{{ route('admin.categoty.create') }}" class="btn btn-secondary">Створити категорію</a>
                         <a href="" class="btn btn-secondary">Створити товар</a>
                     </div>
 
                     <div class="mt-3">
                         <a href="{{ route('admin.view.all') }}" class="btn btn-info">Всі види</a>
-                        <a href="" class="btn btn-info">Всі категорію</a>
+                        <a href="{{ route('admin.categoty.all') }}" class="btn btn-info">Всі категорії</a>
                         <a href="" class="btn btn-info">Весь товар</a>
                     </div>
 
