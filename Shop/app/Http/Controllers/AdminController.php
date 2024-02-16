@@ -149,11 +149,13 @@ class AdminController extends Controller
 
         $image = $request->file('photo');
         $path = $image->store('public/images/product');
+        $newPath = str_replace('public/images/product/', '', $path);
+        $newPath = '/images/' . $newPath;
         $product = new Goods();
         $product->name = $request->product_name;
         $product->cost = $request->price;
         $product->description = $request->description;
-        $product->photo_path = $path;
+        $product->photo_path = $newPath;
         $product->categoti_id = $request->exampleSelect;
         $product->save();
         return back();
@@ -164,5 +166,39 @@ class AdminController extends Controller
         $product = Goods::all();
         //dd($product);
         return view('admin/edit/productAll', ['categorys' => $category, 'products' => $product]);
+    }
+
+    public function updateProduct(Request $request,$id){
+        $validator = Validator::make($request->all(), [
+            'product_name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'description' => 'required|string|min:10',
+            'exampleSelect' => 'required|exists:categoties,id',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $product = Goods::find($id);
+        $product->name = $request->product_name;
+        $product->cost = $request->price;
+        $product->description = $request->description;
+        $product->categoti_id = $request->exampleSelect;
+        $product->save();
+        return back();
+    }
+
+
+    public function deleteProduct($id){
+        $product = Goods::find($id);
+        if ($product) {
+            $product->delete();
+            return back();
+        } else {
+            return back();
+        }
     }
 }
