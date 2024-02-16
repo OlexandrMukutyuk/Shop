@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\imageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +22,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('images/{filename}', [imageController::class, 'index']);
+
+
 
 Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/index_admin', [AdminController::class, 'index'])->name('index_admin');
@@ -36,7 +40,16 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/index_admin/categoty.all', [AdminController::class, 'categotyAll'])->name('admin.categoty.all');
     Route::put('/index_admin/updateCategoty/{id}', [AdminController::class, 'updateCategoty'])->name('updateCategoty');
     Route::delete('/index_admin/deleteCategoty/{id}', [AdminController::class, 'deleteCategoty'])->name('deleteCategoty');
+    //product routs
+    Route::get('/index_admin/product.create', [AdminController::class, 'productCreate'])->name('admin.product.create');
+    Route::post('/index_admin/product.save', [AdminController::class, 'productSave'])->name('admin.product.save');
+    Route::get('/index_admin/product.all', [AdminController::class, 'productAll'])->name('admin.product.all');
+    Route::put('/index_admin/updateProduct/{id}', [AdminController::class, 'updateProduct'])->name('updateProduct');
+    Route::delete('/index_admin/deleteProduct/{id}', [AdminController::class, 'deleteProduct'])->name('deleteProduct');
+
 });
+
+
 
 
 
