@@ -51,6 +51,7 @@
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger deleteBtn" onclick="return confirm('Ви впевнені?')">Видалити</button>
                     </form>
+                    <a href="{{ route('admin.product', ['id' => $categoty->id]) }}" class="btn btn-primary">Переглянути всі товари</a>
                     <div class="mb-5"></div> <!-- Вертикальний відступ між парою форм -->
                     @endforeach
 

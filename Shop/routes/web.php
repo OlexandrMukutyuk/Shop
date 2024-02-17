@@ -46,6 +46,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/index_admin/product.all', [AdminController::class, 'productAll'])->name('admin.product.all');
     Route::put('/index_admin/updateProduct/{id}', [AdminController::class, 'updateProduct'])->name('updateProduct');
     Route::delete('/index_admin/deleteProduct/{id}', [AdminController::class, 'deleteProduct'])->name('deleteProduct');
+    Route::get('/index_admin/product/{id}', [AdminController::class, 'product'])->name('admin.product');
 
 });
 
