@@ -201,4 +201,13 @@ class AdminController extends Controller
             return back();
         }
     }
+
+    public function product($id){
+        $category = Categoty::all();
+
+        $product = Goods::where('categoti_id',$id)->get();
+        //dd($product);
+        return view('admin/edit/productAll', ['categorys' => $category, 'products' => $product]);
+
+    }
 }
