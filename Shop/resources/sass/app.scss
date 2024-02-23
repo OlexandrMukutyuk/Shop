@@ -6,3 +6,34 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex; /* Встановлюємо flex контейнер для центрування контенту */
+    justify-content: center; /* Центруємо контент горизонтально */
+    align-items: center; /* Центруємо контент вертикально */
+    width: 100%; /* Фіксована ширина на всю ширину контейнера */
+}
+
+.card {
+    transition: transform 0.2s;
+    width: 100%; /* Фіксована ширина на всю ширину контейнера */
+    height: 100%; /* Фіксована висота на всю висоту контейнера */
+    overflow: hidden;
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+}
+
+#category_a{
+    transition: transform 0.2s;
+    &:hover {
+        transform: scale(1.05);
+    }
+}

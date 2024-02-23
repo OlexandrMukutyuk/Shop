@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\imageController;
+use App\Http\Controllers\ShopController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,10 +22,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [ShopController::class, 'index'])->name('home');
+Route::get('/category/{id}', [ShopController::class, 'category'])->name('category');
+Route::get('/product/{id}', [ShopController::class, 'product'])->name('product');
+
+Route::middleware(['web'])->group(function () {
+    Route::post('/basket/{id}', [ShopController::class, 'basket'])->name('basket_post');
+    Route::post('/basket_update/{id}', [ShopController::class, 'basket_update'])->name('basket_update');
+    Route::delete('/basket_delete/{id}', [ShopController::class, 'basket_delete'])->name('basket_delete');
+    Route::get('/basket', [ShopController::class, 'basket_list'])->name('basket');
+});
+
+
 Route::get('images/{filename}', [imageController::class, 'index']);
-
-
 
 Route::group(['middleware' => ['role:admin']], function () {
     Route::get('/index_admin', [AdminController::class, 'index'])->name('index_admin');
